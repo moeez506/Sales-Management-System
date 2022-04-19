@@ -1,0 +1,42 @@
+﻿@model Sales_Management_system_.Models.UserModel
+
+@{
+    ViewBag.Title = "login";
+}
+
+<h1 class="text-center" style="color:green">Sales Management System</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal ">
+    <h3 class="text-center" style="color:green">Login</h3>
+    <div class="form-group ">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10 ">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p class="text-danger form-group">
+        @ViewBag.message
+    </p>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Login" class="btn btn-default button" />
+            @Html.ActionLink("Sign Up", "signup", new { htmlAttributes = new { @class = "btn btn-default button" } })
+
+        </div>
+    </div>
+</div>
+}
+

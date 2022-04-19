@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Sales_Management_system_.Models.StockModel>
+
+@{
+    ViewBag.Title = "UpdateStock";
+}
+
+<h3 class="text-center">Select the product to update</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_Price)
+                </td>
+                <td>
+                    <button class="button">
+                        @Html.ActionLink("Select", "Edit", new { id = item.id })
+                    </button>
+                    
+                </td>
+            </tr>
+        
+    }
+
+</table>

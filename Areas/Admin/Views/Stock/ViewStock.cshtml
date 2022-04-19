@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Sales_Management_system_.Models.StockModel>
+
+@{
+    ViewBag.Title = "ViewStock";
+}
+
+<h2 class="text-center">View Stock</h2>
+
+<p>
+    <div class="text-left">
+        @using (Html.BeginForm("GenerateInvoice", "Stock", FormMethod.Get))
+        {
+           
+            <input class="button" type="submit" value="Generate Invoice" />
+        }
+    </div>
+    <div class="text-right">
+        @using (Html.BeginForm("ViewStock", "Stock", FormMethod.Get))
+        {
+            @Html.TextBox("search")
+            <input class="button" type="submit" value="Search" />
+        }
+    </div>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total_Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("deleteStock", "Stock", new { id = item.id }))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total_Price)
+                </td>
+                <td>
+                    <input class="button" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete stock with id=@item.id'); " />
+                </td>
+            </tr>
+            }
+        }
+
+    </table>
